@@ -1,0 +1,23 @@
+/* General body settings */
+body {
+    background-color: white; /* Background color */
+    color: purple; /* Text color */
+    font-family: Arial, sans-serif;
+}
+
+/* Headings */
+h1 {
+    color: purple; /* Heading color */
+}
+
+/* Labels */
+label {
+    color: purple; /* Label color */
+}
+
+/* Input fields, dropdowns, textareas */
+input, select, textarea {
+    border: 2px solid purple; /* Border color */
+    border-radius: 5px;
+    padding: 5px;
+
