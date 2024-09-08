@@ -4,46 +4,68 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daily Athlete Form</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 <body>
     <div>
-        <img src="{{ url_for('static', filename='Screenshot 2024-09-02 125746.png') }}" alt="Team Logo">
+        <img src="{{ url_for('static', filename='team_logo.png') }}" alt="Team Logo">
+        <!-- Display the current date -->
+        <div class="date-display">
+            <p id="current-date"></p>
+        </div>
+
+        <!-- Hidden input field to store the current date -->
+        {{ form.hidden_tag() }}
+        <input type="hidden" id="form-date" name="form-date">
+
         <h1>Daily Athlete Form</h1>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-            <p>{{ form.sleep_hours.label }} {{ form.sleep_hours(size=32) }}</p>
-            <p>{{ form.bed_time.label }} {{ form.bed_time(size=32) }}</p>
-            <p>{{ form.water_intake.label }} {{ form.water_intake(size=32) }}</p>
-            <p>{{ form.breakfast.label }} {{ form.breakfast(size=32) }}</p>
-            <p>{{ form.mental_rating.label }} {{ form.mental_rating(size=32) }}</p>
-            <p>{{ form.physical_rating.label }} {{ form.physical_rating(size=32) }}</p>
-            <p>{{ form.submit() }}</p>
+            <p>{{ form.full_name.label }}<br>{{ form.full_name(size=32, class_="form-control") }}</p>
+            <p>{{ form.jersey_number.label }}<br>{{ form.jersey_number(size=32, class_="form-control") }}</p>
+            <p>{{ form.sleep_hours.label }}<br>{{ form.sleep_hours(class_="form-control") }}</p>
+            <p>{{ form.bed_time.label }}<br>{{ form.bed_time(size=32, class_="form-control") }}</p>
+            <p>{{ form.water_intake.label }}<br>{{ form.water_intake(class_="form-control") }}</p>
+            <p>{{ form.breakfast.label }}<br>{{ form.breakfast(size=32, class_="form-control") }}</p>
+            <p>{{ form.mental_rating.label }}<br>{{ form.mental_rating(class_="form-control") }}</p>
+            <p>{{ form.physical_rating.label }}<br>{{ form.physical_rating(class_="form-control") }}</p>
+            <p>{{ form.submit(class_="btn btn-primary") }}</p>
         </form>
     </div>
-        <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('select').forEach(selectElement => {
-        // Ensure the dropdown is compact on page load
-        selectElement.size = 1;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get today's date in YYYY-MM-DD format
+            let today = new Date().toISOString().split('T')[0];
 
-        // Expand the dropdown when focused
-        selectElement.addEventListener('focus', function() {
-            this.size = this.options.length;
+            // Display the date at the top of the form
+            document.getElementById('current-date').innerText = 'Date: ' + today;
+
+            // Set the date value in the hidden field
+            document.getElementById('form-date').value = today;
         });
 
-        // Close dropdown once an option is selected
-        selectElement.addEventListener('change', function() {
-            this.size = 1;
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('select').forEach(selectElement => {
+                // Ensure the dropdown is compact on page load
+                selectElement.size = 1;
 
-        // Shrink back the dropdown after losing focus
-        selectElement.addEventListener('blur', function() {
-            this.size = 1;
+                // Expand the dropdown when focused
+                selectElement.addEventListener('focus', function() {
+                    this.size = this.options.length;
+                });
+
+                // Close dropdown once an option is selected
+                selectElement.addEventListener('change', function() {
+                    this.size = 1;
+                });
+
+                // Shrink back the dropdown after losing focus
+                selectElement.addEventListener('blur', function() {
+                    this.size = 1;
+                });
+            });
         });
-    });
-});
-</script>
+    </script>
 </body>
 </html>

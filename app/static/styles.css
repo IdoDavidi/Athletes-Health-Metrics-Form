@@ -20,4 +20,5 @@ input, select, textarea {
     border: 2px solid purple; /* Border color */
     border-radius: 5px;
     padding: 5px;
-
+    overflow-x: auto; /* Allow horizontal scrolling */
+    white-space: nowrap; /* Prevent text wrapping */

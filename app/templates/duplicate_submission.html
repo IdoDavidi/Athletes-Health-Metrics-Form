@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Submission Error</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>You have already submitted the form today!</h1>
+    <p>Please choose one of the following actions:</p>
+    <ul>
+        <li><a href="/">Return to the form</a></li>
+        <li><a href="{{ url_for('player_data', jersey_number=jersey_number) }}">View your data</a></li>
+    </ul>
+</body>
+</html>

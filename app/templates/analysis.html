@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div>
+        <h1>Player Analysis</h1>
+        <h2>Averages for the last 3 days</h2>
+        <p>Sleep Hours: {{ last_3_days['Sleep Hours'] }}</p>
+        <p>Water Intake: {{ last_3_days['Water Intake'] }}</p>
+        <p>Mental Rating: {{ last_3_days['Mental Rating'] }}</p>
+        <p>Physical Rating: {{ last_3_days['Physical Rating'] }}</p>
+
+        <h2>Averages for the last week</h2>
+        <p>Sleep Hours: {{ last_week['Sleep Hours'] }}</p>
+        <p>Water Intake: {{ last_week['Water Intake'] }}</p>
+        <p>Mental Rating: {{ last_week['Mental Rating'] }}</p>
+        <p>Physical Rating: {{ last_week['Physical Rating'] }}</p>
+    </div>
+</body>
+</html>

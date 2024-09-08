@@ -1,17 +1,21 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
-from wtforms.fields import TimeField, SelectField
+from wtforms import StringField, IntegerField, SubmitField, FloatField, SelectField, DateField
+from wtforms.fields.datetime import TimeField
+from wtforms.validators import DataRequired, NumberRange
+from datetime import datetime
 
 
 class AthleteForm(FlaskForm):
+    full_name = StringField('Full Name', validators=[DataRequired()])
+    jersey_number = IntegerField('Jersey Number', validators=[DataRequired(), NumberRange(min=0)])
+    date = DateField('Date', default=datetime.today, validators=[DataRequired()])
     sleep_hours = SelectField(
         'Hours of Sleep',
         choices=[('', 'Select...')] + [(str(i), str(i)) for i in [x * 0.5 for x in range(0, 29)]],
         coerce=lambda x: float(x) if x else None,
         validators=[DataRequired()])
     bed_time = TimeField('Time Went to Bed', validators=[DataRequired()])
-    water_intake = SelectField("Yesterday's water intake",
+    water_intake = SelectField("Yesterday's water intake (in Liters)",
                                choices=[('', 'Select...')] + [(str(i), str(i)) for i in
                                                               [x * 0.5 for x in range(0, 11)]],
                                coerce=lambda x: float(x) if x else None,
